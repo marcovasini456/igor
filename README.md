@@ -45,3 +45,27 @@ This script monitors system performance metrics (CPU, RAM, GPU) and logs them al
 ## Disclaimer
 
 This tool provides information to help diagnose issues. It does not guarantee a solution for any specific hardware or software problem. For NVIDIA GPU monitoring, ensure you have the appropriate NVIDIA drivers installed. CPU temperature monitoring is system-dependent.
+
+---
+
+## Snake.io Bot
+
+Automated bot that plays `snake.io` using Playwright and OpenCV, with optional imitation learning.
+
+### Quick start
+
+```bash
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python -m playwright install --with-deps | cat
+python /workspace/snake_bot.py --episodes=3 --seconds=60 --optimize --start-mode auto
+```
+
+### Notes
+- First run accepts cookie banner and saves `data/storage_state.json` for next sessions.
+- Use `--headless` to run without UI, `--infinite` for continuous play.
+- Collect demos and train:
+  ```bash
+  python /workspace/snake_bot.py --demo-seconds 60 --train-after-demo --episodes 0
+  ```
+- Then run with the trained model automatically picked up from `data/model.joblib`.
